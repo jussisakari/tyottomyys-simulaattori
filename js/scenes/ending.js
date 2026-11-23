@@ -43,7 +43,9 @@ window.TS = window.TS || {};
         'JUOMIA ' + s.drinks + '   TORKKUJA ' + s.snoozes + '   TILILLÄ ' + TS.euro(s.money) + '   SIIVOTTU ' + yes(s.cleaned),
         [(s.wallet === 'kept' ? 'OMATUNTO -85 €' : ''),
           (s.flags.orders ? 'OSTOS-TV-TILAUKSIA ' + s.flags.orders : ''),
-          (s.debt ? 'KLARNA-VELKA ' + TS.euro(s.debt) : '')].filter(Boolean).join('   '),
+          (s.debt ? 'KLARNA-VELKA ' + TS.euro(s.debt) : ''),
+          (s.kelaCut ? 'KELA VEI MOBILEPAYT ' + TS.euro(s.kelaCut) : ''),
+          (s.waz && s.waz.sent ? 'KARIN VIESTEJÄ ' + s.waz.sent : '')].filter(Boolean).join('   '),
       ].filter(Boolean);
       sum.forEach((ln, i) => TS.text(g, ln, 160, 134 + i * 7.5, '#8a8494', { align: 'center' }));
       TS.text(g, TS.T.endFooter, 160, 157, '#c8c0b0', { align: 'center' });

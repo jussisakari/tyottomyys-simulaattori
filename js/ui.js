@@ -246,6 +246,12 @@ window.TS = window.TS || {};
       TS.ell(g, 8, -14, 4, 4, '#e03030', '#fff', 0.6);
       TS.text(g, '!', 8, -16.5, '#fff', { align: 'center', bold: true });
     }
+    // unread WazzupApp messages from Kari: a green badge
+    const unread = S.waz ? S.waz.unread : 0;
+    if (unread && !ringing) {
+      TS.ell(g, 8, -14, 4.2, 4.2, '#25b860', '#fff', 0.6);
+      TS.text(g, unread > 9 ? '9+' : String(unread), 8, -16.6, '#fff', { align: 'center', bold: true, s: 0.75 });
+    }
     g.restore();
     if (ringing && Math.floor(TS.realTime * 3) % 2) {
       TS.rbox(g, 266, 135, 30, 10, 3, '#e03030');

@@ -28,7 +28,7 @@
   - UUTISET: a news anchor, a chart of the unemployment rate climbing to 10,9 %, and a news ticker.
   - LUONTO (a sleeping bear), and 21:00-22:30 UNELMADUUNI instead.
   - Watch 1 h, or the whole day until 21:00.
-- **Puhelin (everything happens here)**: the phone icon (bottom-right corner) works everywhere. TOIVO.FI job
+- **Puhelin (everything happens here)**: the phone icon (bottom-right corner) works everywhere. Työkkäri.fi job
   portal (12 absurd ads), a cover letter built from 3 phrase slots (45 min per application),
   rejection e-mails, some (Hehku), Tori.fi and the bank. With Humala 2+, the letter text gets
   scrambled. After midnight the portal is closed.
@@ -44,6 +44,13 @@
   return it (8,50 € finder's fee, mood up) or keep the money (mood down every hour).
 - **Puisto**: drink what's in the shopping bag, sit on the bench, watch the duck.
 
+## Phone home screen (`phonehome.js`)
+The phone icon (bottom-right) answers a ringing call, otherwise opens the home screen: clock,
+date, sunset wallpaper and app icons with names: Puhelin (contacts: TE, äiti, Tarmo, Kari,
+Tarja), WazzupApp, Hehku, Työkkäri.fi, Sähköposti, Tori.fi, Pankki, Muistio (to-do list), Herätys.
+Red badges for unread mail and Kari's messages. Apps open directly and "< ALOITUSNÄKYMÄ" /
+"PUHELIN POIS" go back to the home screen.
+
 ## Phone screens
 - **Calls** (`call.js`) look like a video call: Keijo's hand holds the phone, the caller's face
   talks (mouth moves while their text appears, blinks), a small self-view of Keijo's face, the
@@ -52,7 +59,7 @@
   headset, office), äiti (holds the phone far too close: perm, glasses, floral blouse), Tarmo (cap,
   red flannel, cans on the table), Tarja (lamp light, ponytail, the cat). After the last line you
   are back where you were.
-- **Apps** (TOIVO.FI, Tori.fi, mail, bank): the phone held sideways in both hands, thumbs on the edges.
+- **Apps** (Työkkäri.fi, Tori.fi, mail, bank): the phone held sideways in both hands, thumbs on the edges.
 - **Hehku** (some): one hand holds the phone over the belly.
 
 ## Bottles, cleaning, Klarna, comments
@@ -66,6 +73,20 @@
 - **Hehku comments:** the speech bubble under a post opens its comments (all positive). Keijo
   can post one comment per post: bitter ones everywhere, except on Tarmo's post, where he
   can only write something nice. Each gets a reply and a thought from Keijo.
+
+## Kari and WazzupApp (`wazzup.js`)
+- Kari, 45, 128 kg, a friend from vocational school. He never answers the phone ("Soita Karille"
+  → no answer, then a stupid WazzupApp message, sometimes with a video).
+- From 07:00 he sends all-caps messages ("HERÄÄ TÖRÄTAMPERO", "WOMBOAMPINA HERÄTYYYS!") and AI
+  "TikTok" videos (click to watch). Ignoring him makes him angrier step by step
+  (HALOOOO → MIKS ET VASTAA??? → HERÄTYYYYYYYS NYT MENEE HERMOT → … → "HYVÄSTI." → "HERÄÄÄÄÄÄ").
+  Reading without replying: "SINISET RASTIT EI VALEHTELE!!!!". Replying calms him down.
+- The phone icon gets a green badge for unread messages. The desk phone is gone.
+
+## Tori.fi payments
+Some buyers want to pay with MobilePay. Cash is safe; MobilePay money lands on the account, but
+Kela notices it within the hour and deducts it from the benefit (an e-mail, money taken back
+down to 0 €, and "KELA VEI MOBILEPAYT" on the end screen).
 
 ## Look of the characters
 People (Keijo, Tarmo, Tarja, the faces on video calls, the mirror) are drawn with smooth shapes

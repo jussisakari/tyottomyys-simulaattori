@@ -20,11 +20,16 @@ window.TS = window.TS || {};
   let off = 0, target = 0, back = 'apartment', backArg = null;
   let seen = [], current = -1, note = null, noteT = 0;
   let open = -1; // index of the post whose comments are open, -1 = feed
-  const CBACK = { x: SCR.x, y: TOP, w: 40, h: 10 };
+  const CBACK = { x: SCR.x + 2, y: TOP + 0.5, w: 52, h: 9 };
   const CWRITE = { x: SCR.x + 4, y: SCR.y + 118, w: SCR.w - 8, h: 11 };
 
   const maxOff = () => Math.max(0, F().posts.length * POST_H + 40 - VIEW_H);
-  const scrollBy = (d) => { if (!ui.busy() && open < 0) target = TS.clamp(target + d, 0, maxOff()); };
+  // Scrolling also closes an open comment view (back to the feed), so you never get stuck there.
+  const scrollBy = (d) => {
+    if (ui.busy()) return;
+    open = -1;
+    target = TS.clamp(target + d, 0, maxOff());
+  };
 
   TS.scenes.some = {
     hud: true,
@@ -140,7 +145,10 @@ window.TS = window.TS || {};
   function drawComments(g, i) {
     const S = TS.S, p = F().posts[i], x = SCR.x, R = TS.rect;
     R(g, x, TOP, SCR.w, 180 - TOP, '#ffffff');
-    TS.text(g, '< ' + F().commentsTitle, x + 3, TOP + 2, '#d04080', { bold: true, s: 0.85 });
+    const hovB = TS.hit(CBACK, TS.mouse.x, TS.mouse.y);
+    TS.rbox(g, CBACK.x, CBACK.y, CBACK.w, CBACK.h, 3, hovB ? '#f4d0e0' : '#fbe8f0', '#d04080', 0.4);
+    TS.text(g, '< Takaisin', CBACK.x + 4, CBACK.y + 2.2, '#d04080', { bold: true, s: 0.8 });
+    TS.text(g, F().commentsTitle, x + SCR.w - 3, TOP + 2.5, '#888', { align: 'right', s: 0.7 });
     R(g, x, TOP + 10, SCR.w, 0.4, '#dddddd');
     // the post's own caption first, then the comments (the oldest drop out if they don't fit)
     const list = [[p.user, p.text, '#555', 0]];

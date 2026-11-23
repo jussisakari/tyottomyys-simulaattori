@@ -30,7 +30,6 @@ window.TS = window.TS || {};
   // ---------------- Hotspots ----------------
   const HOT = [
     { id: 'note', name: 'Muistilappu', r: { x: 299, y: 80, w: 10, h: 10 }, stand: 296, use: showNote },
-    { id: 'phone', name: 'Puhelin', r: { x: 166, y: 103, w: 10, h: 10 }, stand: 168, use: () => TS.openPhone() },
     { id: 'drawer', name: 'Pöytälaatikko', r: { x: 142, y: 114, w: 32, h: 11 }, stand: 156, use: drawer },
     { id: 'laptop', name: 'Läppäri (Win 95)', r: { x: 144, y: 95, w: 24, h: 18 }, stand: 156, use: () => TS.go('laptop', { phone: false, back: 'apartment' }) },
     { id: 'calendar', name: 'Kalenteri', r: { x: 112, y: 50, w: 16, h: 18 }, stand: 118, use: () => ui.say(T().calendar) },
@@ -244,7 +243,6 @@ window.TS = window.TS || {};
       const s = S();
       const h = hotAt(x, y);
       if (h && h.id === 'bed' && s.inBed) { bedMenu(); return; }
-      if (h && h.id === 'phone') { TS.openPhone(); return; }
       if (s.inBed) getUp();
       if (h) { man.target = TS.clamp(h.stand, 14, 306); man.onArrive = h.use; }
       else if (y > 138) { man.target = TS.clamp(x, 14, 306); man.onArrive = null; }
@@ -297,7 +295,6 @@ window.TS = window.TS || {};
       }
       drawFliesAndStink(g, s);
       ui.drawHUD(g);
-      drawPhoneRing(g, s);
       // name of the thing under the mouse
       if (!ui.busy()) {
         const h = hotAt(TS.mouse.x, TS.mouse.y);
@@ -377,7 +374,7 @@ window.TS = window.TS || {};
     // forever installing: teal screen with a little grey box
     R(g, 149, 98, 14, 11, '#008080');
     R(g, 151, 101, 10, 5, '#c0c0c0'); R(g, 151, 101, 10, 1.2, '#000080');
-    R(g, 168, 107, 6, 5, '#202024'); R(g, 169, 108, 4, 2, '#3a4a5a');
+    // (no phone on the desk: the phone lives in the bottom-right corner)
     // cable to the wall
     R(g, 174, 112, 1, 1, '#111'); R(g, 175, 113, 1, 23, '#111');
 
@@ -570,10 +567,5 @@ window.TS = window.TS || {};
         }
       }
     }
-  }
-
-  function drawPhoneRing(g, s) {
-    if (!s.phone || ui.busy()) return;
-    if (Math.floor(TS.realTime * 4) % 2) TS.text(g, 'RIIING!', 171, 92, '#d0544a', { align: 'center', shadow: '#000' });
   }
 })();

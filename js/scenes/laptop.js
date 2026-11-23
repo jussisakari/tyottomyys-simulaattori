@@ -1,4 +1,4 @@
-// laptop.js – the phone apps: job portal TOIVO.FI, e-mail, some, Tori.fi, bank.
+// laptop.js – the phone apps: job portal Työkkäri.fi, e-mail, some, Tori.fi, bank.
 // Everything happens on the phone (arg.phone = true). The old laptop (arg.phone = false)
 // only shows an 'WIN 95' installation that never ends.
 window.TS = window.TS || {};
@@ -20,6 +20,9 @@ window.TS = window.TS || {};
     TS.button(ui_g, r, label, Object.assign({ fill: '#dfe8df', hoverFill: '#b8d8b8', line: GREEN, col: INK }, opts || {}));
   }
   let ui_g = null;
+
+  // Back to the phone's home screen (the app grid)
+  function goHome() { if (phone) TS.go(back); else view = 'home'; }
 
   function needNet(next) {
     next();
@@ -120,7 +123,8 @@ window.TS = window.TS || {};
       phone = !!arg.phone;
       back = arg.back || 'apartment';
       SC = phone ? { x: 52, y: 28, w: 216, h: 142 } : { x: 16, y: 24, w: 288, h: 146 };
-      view = phone ? 'home' : 'install';
+      // the phone opens straight into one app (from the home screen icons)
+      view = phone ? (arg.view || 'ads') : 'install';
     },
     click(x, y) {
       for (const b of btns) if (TS.hit(b.r, x, y)) { TS.sfx.click(); b.fn(); return; }
@@ -158,13 +162,13 @@ window.TS = window.TS || {};
 
       // browser bar
       R(g, SC.x, SC.y, SC.w, 10, '#c8ccc8');
-      TS.text(g, 'TOIVO.FI   4G  12%', SC.x + 4, SC.y + 3, '#505050');
+      TS.text(g, 'TYÖKKÄRI.FI   4G  12%', SC.x + 4, SC.y + 3, '#505050');
       const top = SC.y + 14;
       const bw = SC.w - 24;
       const bx = SC.x + 12;
 
       if (view === 'home') {
-        TS.text(g, 'TOIVO.FI', cx, top + 2, GREEN, { align: 'center', s: 2 });
+        TS.text(g, 'TYÖKKÄRI.FI', cx, top + 2, GREEN, { align: 'center', s: 1.6 });
         TS.text(g, L().phoneSlogan, cx, top + 16, INK, { align: 'center' });
         TS.text(g, 'LÄHETETYT HAKEMUKSET TÄNÄÄN: ' + s.apps + '/4', cx, top + 33, s.apps >= 4 ? GREEN : '#a03a3a', { align: 'center' });
         const unread = visibleMail().filter((m) => !m.read).length;
@@ -195,7 +199,7 @@ window.TS = window.TS || {};
             btns.push({ r: r, fn() { sel = i; view = 'ad'; } });
           });
         }
-        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, 'TAKAISIN', () => { view = 'home'; });
+        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, '< ALOITUSNÄKYMÄ', goHome);
       } else if (view === 'ad') {
         const ad = TS.T.ads[sel];
         TS.text(g, ad.title, SC.x + 8, top, GREEN);
@@ -247,7 +251,7 @@ window.TS = window.TS || {};
         });
         const hidden = Object.keys(st.found).filter((id) => !st.found[id]).length;
         if (hidden) TS.wrap('Vinkki: kotona voi olla lisää myytävää. Sängyn alla? Laatikoissa?', chars).forEach((ln, i) => TS.text(g, ln, SC.x + 8, SC.y + SC.h - 33 + i * 8, '#9a9a9a'));
-        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, 'TAKAISIN', () => { view = 'home'; });
+        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, '< ALOITUSNÄKYMÄ', goHome);
       } else if (view === 'mail') {
         TS.text(g, 'SAAPUNEET', SC.x + 8, top, GREEN);
         const list = visibleMail().slice(0, 8);
@@ -261,7 +265,7 @@ window.TS = window.TS || {};
         });
         const spam = s.emails.filter((m) => m.hidden).length + 14;
         TS.text(g, 'ROSKAPOSTI: ' + spam + ' VIESTIÄ (ÄLÄ AVAA)', SC.x + 8, SC.y + SC.h - 26, '#9a9a9a');
-        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, 'TAKAISIN', () => { view = 'home'; });
+        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, '< ALOITUSNÄKYMÄ', goHome);
       } else if (view === 'read' && readMail) {
         TS.text(g, 'LÄHETTÄJÄ: ' + readMail.from, SC.x + 8, top, GREEN);
         TS.text(g, 'AIHE: ' + readMail.subj, SC.x + 8, top + 9, '#6a6a6a');

@@ -105,6 +105,7 @@ window.TS = window.TS || {};
       TS.checkEvents();
       TS.checkPhone();
       TS.toriTick();
+      TS.wazTick();
       // New e-mails
       S.emails.forEach((m) => {
         if (!m.notified && !m.hidden && m.at <= S.t) {

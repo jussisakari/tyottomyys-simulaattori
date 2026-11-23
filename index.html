@@ -3,12 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Työttömyys-simulaattori</title>
+  <meta name="apple-mobile-web-app-title" content="Työtön">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#14121c">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="game" width="320" height="180"></canvas>
+
+  <div id="rotate-hint">
+    <div class="rotate-icon">📱↻</div>
+    <div>Käännä puhelin vaakatasoon</div>
+  </div>
 
   <!-- Classic scripts (not modules) so the game works straight from file:// -->
   <script src="js/engine.js"></script>
@@ -20,6 +32,7 @@
   <script src="js/events.js"></script>
   <script src="js/calls.js"></script>
   <script src="js/tori.js"></script>
+  <script src="js/wazzup.js"></script>
   <script src="js/scenes/title.js"></script>
   <script src="js/scenes/apartment.js"></script>
   <script src="js/scenes/fridge.js"></script>
@@ -28,6 +41,7 @@
   <script src="js/scenes/laptop.js"></script>
   <script src="js/scenes/some.js"></script>
   <script src="js/scenes/call.js"></script>
+  <script src="js/scenes/phonehome.js"></script>
   <script src="js/scenes/street.js"></script>
   <script src="js/scenes/places.js"></script>
   <script src="js/scenes/tarja.js"></script>

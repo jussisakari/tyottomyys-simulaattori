@@ -57,6 +57,27 @@ window.TS = window.TS || {};
     TS.lastInput = TS.realTime;
     TS.handleClick(p.x, p.y);
   });
+  // ---------- Full screen on phones and tablets ----------
+  // The game goes full screen (no address bar) on the first tap with a finger,
+  // and again after the full screen was closed. Browsers only allow this right
+  // after a tap, so it is asked in the touch "up" event. (Same as in Matkapeli.)
+  function goFullscreen(e) {
+    if (e.pointerType === 'mouse') return;                       // not on a computer
+    if (document.fullscreenElement || document.webkitFullscreenElement) return;
+    if (window.matchMedia && matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches) return; // installed app
+    const el = document.documentElement;
+    const req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (!req) return;
+    try {
+      const p = req.call(el, { navigationUI: 'hide' });
+      const lock = () => { try { screen.orientation.lock('landscape').catch(() => {}); } catch (_) { /* not supported */ } };
+      if (p && p.then) p.then(lock, () => {}); else lock();
+    } catch (_) { /* not allowed here */ }
+  }
+  canvas.addEventListener('pointerup', goFullscreen);
+  window.addEventListener('orientationchange', resize);
+  document.addEventListener('fullscreenchange', resize);
+
   canvas.addEventListener('pointermove', (e) => {
     const p = toGame(e);
     // Dragging with a finger or a held mouse button (used to scroll the some feed)

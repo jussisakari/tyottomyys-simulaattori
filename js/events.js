@@ -64,6 +64,7 @@ window.TS = window.TS || {};
   };
 
 
+  // The phone icon: answers a ringing call, otherwise opens the phone's home screen.
   TS.openPhone = function () {
     const S = TS.S;
     if (S.phone) {
@@ -72,22 +73,26 @@ window.TS = window.TS || {};
       TS.talk(TS.CALLS[who], 'start');
       return;
     }
-    ui.choose(T().phone.ask, [
-      { label: 'Selaa somea (Hehku)', fn() { TS.go('some', { back: TS.sceneName }); } },
-      { label: 'Avaa työnhaku, Tori.fi ja pankki', fn() { TS.go('laptop', { phone: true, back: TS.sceneName }); } },
-      S.teState !== 'ok' && { label: 'Soita TE-palveluihin', fn: teCallback },
-      S.mumMissed && { label: 'Soita äidille', fn() { S.mumMissed = false; TS.talk(TS.CALLS.mum, 'start'); } },
-      { label: 'Soita Tarmolle', fn: tarmoCall },
-      // Always visible, but greyed out until you have enough liquid courage (Humala 2+)
-      tarjaWaiting()
-        ? { label: 'Soita: "Tarja? pubista.." (hän odottaa!)', fn: bootyCall }
-        : S.drunk >= 2
-        ? { label: 'Soita: "Tarja? pubista.." (huono idea)', fn: bootyCall }
-        : { label: 'Soita: "Tarja? pubista.." (liian selvä)', disabled: true, fn() { ui.say(T().booty.sober); } },
-      { label: 'Peruuta' },
-    ]);
+    TS.go('phonehome', { back: TS.sceneName });
   };
 
+  // The "Puhelin" app: who to call.
+  TS.phoneContacts = function () {
+    const S = TS.S;
+    ui.choose('Yhteystiedot. Viimeisin puhelu: äiti, kolme viikkoa sitten. Hän soitti.', [
+      S.teState !== 'ok' && { label: 'TE-palvelut', fn: teCallback },
+      { label: 'Äiti' + (S.mumMissed ? ' (vastaamaton puhelu)' : ''), fn() { S.mumMissed = false; TS.talk(TS.CALLS.mum, 'start'); } },
+      { label: 'Tarmo', fn: tarmoCall },
+      { label: 'Kari (ei koskaan vastaa)', fn() { TS.callKari(); } },
+      // Always visible, but greyed out until you have enough liquid courage (Humala 2+)
+      tarjaWaiting()
+        ? { label: '"Tarja? pubista.." (hän odottaa!)', fn: bootyCall }
+        : S.drunk >= 2
+        ? { label: '"Tarja? pubista.." (huono idea)', fn: bootyCall }
+        : { label: '"Tarja? pubista.." (liian selvä)', disabled: true, fn() { ui.say(T().booty.sober); } },
+      { label: 'Takaisin' },
+    ]);
+  };
   // Tarmo stops answering after three calls.
   function tarmoCall() {
     const S = TS.S;
