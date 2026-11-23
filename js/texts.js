@@ -497,6 +497,29 @@ TS.T = {
     },
   },
   wazList: 'Viimeisimmät keskustelut',
+  // The Rosvo casino app: the pirate slot machine "Yksikätinen Rosvo" (js/scenes/slot.js)
+  slot: {
+    title: 'YKSIKÄTINEN ROSVO',
+    bet: 2,
+    hello: 'Arrr, maakrapu! Kapteeni Koukku tässä. Toinen käsi meni haille, toinen vetää vipua. Pyöräytä!',
+    lose: [
+      'Arrr! Meri vei kolikkosi. Meri vie aina.',
+      'Papukaija sanoo: HÄVISIT. HÄVISIT. HÄVISIT.',
+      'Rosvo nauraa koukkukädellään. Se on yllättävän vaikea liike.',
+      'Melkein! Rommipullo oli ihan vieressä. Rommipullo on aina ihan vieressä.',
+      'Arrr! Aarre on tuolla jossain. Ei tässä. Pyöräytä uudestaan.',
+      'Kolikkosi lähti seikkailemaan. Se ei palaa. Kuten minun käteni.',
+    ],
+    small: 'Arrr! Pikku aarre: +{e}! Rosvo epäilee itseään.',
+    broke: 'Arrr, tyhjä kukkaro! Kysy PikaVippi24:ltä, maakrapu. He ovat vanhoja merirosvokavereitani.',
+    jackpot: 'AARRE!!! JACKPOT!!! 1 000 000 €!!! Rosvo putoaa tuolilta. Papukaija pyörtyy.',
+    odds: 'Jackpot 5 %*  *Rosvon lupaus',
+    end: {
+      title: 'MILJONÄÄRI',
+      decision: 'Työttömyysetuus lakkautettu. Syy: miljoona euroa. Hakemuksia ei enää tarvita. Kela toivottaa hyvää jatkoa ja muistuttaa veroilmoituksesta.',
+      line: 'Keijo ei koskaan löytänyt töitä. Tuuri löysi Keijon. Avoauto, rannikkotie ja nainen, jonka nimeä hän ei vielä tiedä. Kari lähettää viestin: "HERÄÄ". Keijo ei herää. Hän on hereillä.',
+    },
+  },
   // Selling stuff on Tori.fi (js/tori.js)
   tori: {
     items: {

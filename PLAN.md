@@ -47,9 +47,16 @@
 ## Phone home screen (`phonehome.js`)
 The phone icon (bottom-right) answers a ringing call, otherwise opens the home screen: clock,
 date, sunset wallpaper and app icons with names: Puhelin (contacts: TE, äiti, Tarmo, Kari,
-Tarja), WazzupApp, Hehku, Työkkäri.fi, Sähköposti, Tori.fi, Pankki, Muistio (to-do list), Herätys.
+Tarja), WazzupApp, Hehku, Työkkäri.fi, Sähköposti, Tori.fi, Pankki, Rosvo (casino), Herätys.
 Red badges for unread mail and Kari's messages. Apps open directly and "< ALOITUSNÄKYMÄ" /
 "PUHELIN POIS" go back to the home screen.
+
+## Rosvo casino app (slot.js, jackpot.js)
+The pirate slot machine "Yksikätinen Rosvo": Kapteeni Koukku (hook hand, eye patch, tricorn, parrot)
+pulls the lever and insults you. 2 € a spin: 5 % jackpot (three treasure chests) = 1 000 000 €,
+15 % small wins (2–10 × the bet), the rest are losses. The jackpot ends the game: Keijo in a
+Hawaiian shirt and sunglasses drives a red convertible along a sunset coast with a lady next to
+him, palm trees rushing by and euro notes flying, then the MILJONÄÄRI ending.
 
 ## Phone screens
 - **Calls** (`call.js`) look like a video call: Keijo's hand holds the phone, the caller's face

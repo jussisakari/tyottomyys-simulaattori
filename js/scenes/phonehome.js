@@ -23,21 +23,9 @@ window.TS = window.TS || {};
       badge: () => TS.S.emails.filter((m) => !m.hidden && !m.read && m.at <= TS.S.t).length },
     { id: 'tori', name: 'Tori.fi', open: () => TS.go('laptop', { phone: true, back: 'phonehome', view: 'tori' }) },
     { id: 'bank', name: 'Pankki', open: () => ui.say(TS.T.phone.bank.replace('{e}', TS.euro(TS.S.money))) },
-    { id: 'notes', name: 'Muistio', open: showNotes },
+    { id: 'casino', name: 'Rosvo', open: () => TS.go('slot', { back: 'phonehome' }) },
     { id: 'alarm', name: 'Herätys', open: () => ui.say('Herätys 07.00. Toistuu joka päivä. Syy: tapa. Muuta syytä ei ole ollut vuoteen 2023.') },
   ];
-
-  function showNotes() {
-    const s = TS.S, x = (b) => (b ? '[X] ' : '[ ] ');
-    ui.say([
-      'MUISTIO:',
-      x(s.apps >= 4) + '4 työhakemusta ennen keskiyötä (' + s.apps + '/4) - KELA!',
-      x(s.teState === 'ok') + 'Vastaa TE-palveluiden puheluun (n. klo 10.30)',
-      x(s.showered) + 'Käy suihkussa',
-      x(s.flags.ate) + 'Syö jotain',
-      x(s.trashOut) + 'Vie roskat',
-    ].join('\n'));
-  }
 
   TS.scenes.phonehome = {
     hud: true,
@@ -100,7 +88,7 @@ window.TS = window.TS || {};
   function drawIcon(g, id, cx, cy, hov) {
     const x = cx - 9, y = cy - 9, W = '#ffffff';
     const COL = { phone: '#34c759', wazzup: '#25b860', hehku: '#d04080', toivo: '#2f7a4a', mail: '#2a7ae0',
-      tori: '#f08a24', bank: '#1e2a5a', notes: '#ffd23c', alarm: '#2a2a32' };
+      tori: '#f08a24', bank: '#1e2a5a', casino: '#b01a1a', alarm: '#2a2a32' };
     if (id === 'hehku') {
       const gr = g.createLinearGradient(x, y + 18, x + 18, y);
       gr.addColorStop(0, '#f8b030'); gr.addColorStop(0.5, '#e03a7a'); gr.addColorStop(1, '#7a3ad0');
@@ -137,9 +125,12 @@ window.TS = window.TS || {};
     } else if (id === 'bank') { // a coin with €
       TS.ell(g, cx, cy, 6.5, 6.5, '#f0c040', '#c89020', 0.8);
       TS.text(g, '€', cx, cy - 3.6, '#1e2a5a', { align: 'center', bold: true, s: 1.15 });
-    } else if (id === 'notes') { // lined note
-      TS.rbox(g, cx - 5, cy - 6, 10, 12, 1, W);
-      for (let i = 0; i < 4; i++) TS.rect(g, cx - 3.5, cy - 3.8 + i * 2.6, 7, 0.7, '#b8a040');
+    } else if (id === 'casino') { // a little slot machine with a lever
+      TS.rbox(g, cx - 6, cy - 5.5, 10, 12, 1.5, '#f0c040');
+      TS.rect(g, cx - 5, cy - 3, 8, 4.5, '#fff');
+      ['7', '7', '7'].forEach((s, i) => TS.text(g, s, cx - 3.6 + i * 2.7, cy - 2.8, '#c01a1a', { bold: true, s: 0.55 }));
+      TS.rect(g, cx + 4.6, cy - 4, 0.9, 6, '#ddd');
+      TS.ell(g, cx + 5, cy - 4.8, 1.4, 1.4, W);
     } else if (id === 'alarm') { // alarm clock
       TS.ell(g, cx, cy + 0.5, 5.8, 5.8, W);
       TS.ell(g, cx - 4.5, cy - 5, 1.8, 1.8, W); TS.ell(g, cx + 4.5, cy - 5, 1.8, 1.8, W);
