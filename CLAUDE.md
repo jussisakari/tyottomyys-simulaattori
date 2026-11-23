@@ -14,9 +14,10 @@ or Kela stops the money. `PLAN.md` describes every scene and feature.
 - Time passes only through `TS.advance(min)` / `TS.doAction({...})`. Timed events are in `js/events.js`.
 - No real brands or real people, except the place names Kela, TE-palvelut, Alko and the
   Sabrina poster that the user asked for.
-- New script files go into `index.html` (the order matters: scenes after `events.js`, `main.js` last).
+- New script files go into the `files` list of the loader in `index.html` (the order matters: scenes after `events.js`, `main.js` last).
 
 ## Releases
+Bump the number in `version.txt` before every push to `main`: the loader in `index.html` adds it to every script address, so phones load the new files instead of old cached ones.
 Live at https://jussisakari.github.io/tyottomyys-simulaattori/ (GitHub Pages, built from the
 `main` branch root): every push to `main` updates the live game. Releases are tags + GitHub
 releases made with `gh release create vN`.

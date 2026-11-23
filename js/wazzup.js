@@ -17,10 +17,16 @@ window.TS = window.TS || {};
       S.waz = { msgs: [], queue: [], next: S.t + 70, anger: 0, unread: 0, lastKari: 0, lastReply: 0, readAt: 0, readNagged: true, sent: 0 };
       K().first.forEach((txt, i) => S.waz.queue.push({ at: S.t + i, text: txt }));
     }
-    if (!S.waz.other) {
-      S.waz.other = {};
-      Object.keys(SP()).forEach((id) => { S.waz.other[id] = { msgs: [], unread: 0, done: 0 }; });
-    }
+    if (!S.waz.other) S.waz.other = {};
+    Object.keys(SP()).forEach((id) => {
+      if (!S.waz.other[id]) S.waz.other[id] = { msgs: [], unread: 0, done: 0 };
+      const c = S.waz.other[id];
+      // the chats already exist: yesterday's messages (already read) are at the top
+      if (!c.seeded) {
+        c.seeded = true;
+        (SP()[id].yesterday || []).forEach(([m, text]) => c.msgs.unshift({ from: 'them', text: text, t: m - 1440 }));
+      }
+    });
     return S.waz;
   };
 
@@ -85,6 +91,8 @@ window.TS = window.TS || {};
       }
     }
   };
+
+  const when = (t) => (t < TS.DAY_START ? 'eilen' : TS.clockStr(t));
 
   function notify(text) {
     if (TS.S.sleeping) return;
@@ -222,7 +230,7 @@ window.TS = window.TS || {};
       avatar(g, c.id, x + 8.5, y + 9.5, 6);
       TS.text(g, c.name, x + 18, y + 3, '#111', { bold: true, s: 0.72 });
       if (m) {
-        TS.text(g, TS.clockStr(m.t), x + SCR.w - 3, y + 3.2, c.unread ? '#25b860' : '#999', { align: 'right', s: 0.55 });
+        TS.text(g, when(m.t), x + SCR.w - 3, y + 3.2, c.unread ? '#25b860' : '#999', { align: 'right', s: 0.55 });
         let prev = (m.from === 'me' ? '✓✓ ' : '') + (m.video != null ? '[video] ' : '') + m.text;
         while (prev.length > 3 && TS.textW(prev + '…', 0.6) > SCR.w - 32) prev = prev.slice(0, -1);
         if (prev !== ((m.from === 'me' ? '✓✓ ' : '') + (m.video != null ? '[video] ' : '') + m.text)) prev += '…';
@@ -299,7 +307,7 @@ window.TS = window.TS || {};
         TS.text(g, 'tyokkari.fi/paikka/' + (4100 + m.ad * 37), lr.x + 4, lr.y + 7.4, '#2a6ac0', { s: 0.52 });
         items.push({ r: lr, ad: m.ad });
       }
-      TS.text(g, TS.clockStr(m.t) + (me ? ' ✓✓' : ''), x + bw - 2, y + bh - 5.6, me ? '#4aa0e0' : '#9a948a', { s: 0.5, align: 'right' });
+      TS.text(g, when(m.t) + (me ? ' ✓✓' : ''), x + bw - 2, y + bh - 5.6, me ? '#4aa0e0' : '#9a948a', { s: 0.5, align: 'right' });
     }
   }
 

@@ -441,6 +441,7 @@ TS.T = {
     // Äiti sends links to job ads (third value = which ad in TS.T.ads the link opens)
     aiti: {
       name: 'Äiti', status: 'paikalla (aina)', color: '#c86a9a', initials: 'Ä',
+      yesterday: [[21 * 60 + 50, 'Hyvää yötä kulta. Muista hakea niitä töitä huomenna <3 Äiti']],
       msgs: [
         [8 * 60 + 5, 'Huomenta kulta! Löysin sulle tämän. Ass-marketissa haetaan kassaa. Sinähän olet aina tykännyt käydä kaupassa <3', 6],
         [12 * 60 + 40, 'Keijo katso! Siivoojaa haetaan. Sinun asunnostasi päätellen tämä olisi sulle uusi kokemus, mutta kokeile!', 5],
@@ -456,6 +457,7 @@ TS.T = {
     },
     vippi: {
       name: 'PikaVippi24', status: 'Yritystili ✓', color: '#e8a020', initials: '€',
+      yesterday: [[19 * 60 + 3, 'Keijo, rahahuolia? Me emme kysy miksi. Vastaa LAINA.']],
       msgs: [
         [9 * 60 + 12, 'Hei Keijo! Sinulle on myönnetty ennakkopäätös: jopa 2000 € heti tilille! Ei turhia kysymyksiä. Vastaa LAINA.'],
         [14 * 60 + 30, 'Muistutus! Rahat odottavat. Todellinen vuosikorko vain 189 %. Elämä on lyhyt, korot pitkiä!'],
@@ -473,6 +475,7 @@ TS.T = {
     },
     kasino: {
       name: 'Kasino Kultakala', status: 'Yritystili ✓', color: '#c0303a', initials: '7',
+      yesterday: [[23 * 60 + 40, 'Keijo! 50 ilmaiskierrostasi vanhenee pian! Älä anna onnen karata!']],
       msgs: [
         [11 * 60, 'KEIJO!!! 200 ILMAISKIERROSTA odottaa! Talleta vain 10 € ja voita jopa 1 000 000 €!!!'],
         [17 * 60 + 45, 'Huomasimme, ettet ole pelannut tänään. Onko kaikki hyvin? Talleta 10 €, niin tarkistetaan.'],

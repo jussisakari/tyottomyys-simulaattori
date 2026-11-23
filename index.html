@@ -22,30 +22,31 @@
     <div>Käännä puhelin vaakatasoon</div>
   </div>
 
-  <!-- Classic scripts (not modules) so the game works straight from file:// -->
-  <script src="js/engine.js"></script>
-  <script src="js/pixel.js"></script>
-  <script src="js/sprites.js"></script>
-  <script src="js/texts.js"></script>
-  <script src="js/state.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/events.js"></script>
-  <script src="js/calls.js"></script>
-  <script src="js/tori.js"></script>
-  <script src="js/wazzup.js"></script>
-  <script src="js/scenes/title.js"></script>
-  <script src="js/scenes/apartment.js"></script>
-  <script src="js/scenes/fridge.js"></script>
-  <script src="js/scenes/bathroom.js"></script>
-  <script src="js/scenes/tv.js"></script>
-  <script src="js/scenes/laptop.js"></script>
-  <script src="js/scenes/some.js"></script>
-  <script src="js/scenes/call.js"></script>
-  <script src="js/scenes/phonehome.js"></script>
-  <script src="js/scenes/street.js"></script>
-  <script src="js/scenes/places.js"></script>
-  <script src="js/scenes/tarja.js"></script>
-  <script src="js/scenes/ending.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <!-- The game files are loaded with the version number in their address, so phones
+       never keep running an old cached version. version.txt is read without the cache.
+       Bump version.txt on every release. From file:// (testing) the files load directly. -->
+  <script>
+    (function () {
+      var files = [
+        'js/engine.js', 'js/pixel.js', 'js/sprites.js', 'js/texts.js', 'js/state.js', 'js/ui.js',
+        'js/events.js', 'js/calls.js', 'js/tori.js', 'js/wazzup.js',
+        'js/scenes/title.js', 'js/scenes/apartment.js', 'js/scenes/fridge.js', 'js/scenes/bathroom.js',
+        'js/scenes/tv.js', 'js/scenes/laptop.js', 'js/scenes/some.js', 'js/scenes/call.js',
+        'js/scenes/phonehome.js', 'js/scenes/street.js', 'js/scenes/places.js', 'js/scenes/tarja.js',
+        'js/scenes/ending.js', 'js/main.js'
+      ];
+      function load(v) {
+        files.forEach(function (f) {
+          var s = document.createElement('script');
+          s.src = f + (v ? '?v=' + encodeURIComponent(v) : '');
+          s.async = false; // keep the order
+          document.body.appendChild(s);
+        });
+      }
+      if (location.protocol === 'file:' || !window.fetch) { load(''); return; }
+      fetch('version.txt', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.text() : String(Date.now()); })
+        .then(function (v) { load(v.trim()); }, function () { load(String(Date.now())); });
+    })();
+  </script></body>
 </html>
