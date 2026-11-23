@@ -9,7 +9,7 @@ window.TS = window.TS || {};
   const L = () => TS.T.lap;
 
   let phone = false, back = 'apartment', view = 'home';
-  let sel = 0, slots = [0, 0, 0], readMail = null;
+  let sel = 0, slots = [0, 0, 0], readMail = null, fromLink = false;
   let btns = [];
   let SC = { x: 16, y: 24, w: 288, h: 146 };
 
@@ -125,6 +125,8 @@ window.TS = window.TS || {};
       SC = phone ? { x: 52, y: 28, w: 216, h: 142 } : { x: 16, y: 24, w: 288, h: 146 };
       // the phone opens straight into one app (from the home screen icons)
       view = phone ? (arg.view || 'ads') : 'install';
+      fromLink = arg.ad != null;
+      if (fromLink) sel = arg.ad; // a job link from äiti's message
     },
     click(x, y) {
       for (const b of btns) if (TS.hit(b.r, x, y)) { TS.sfx.click(); b.fn(); return; }
@@ -208,8 +210,10 @@ window.TS = window.TS || {};
         TS.wrap(ad.text, chars).forEach((ln) => { TS.text(g, ln, SC.x + 8, y, INK); y += 8; });
         y += 4;
         TS.wrap(ad.req, chars).forEach((ln) => { TS.text(g, ln, SC.x + 8, y, '#7a3a3a'); y += 8; });
-        btn({ x: bx, y: SC.y + SC.h - 31, w: bw, h: 12 }, 'HAE PAIKKAA', () => { slots = [TS.rand(0, 3), TS.rand(0, 3), TS.rand(0, 3)]; view = 'letter'; });
-        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, 'TAKAISIN', () => { view = 'ads'; });
+        if (s.appliedAds.indexOf(sel) >= 0) TS.text(g, 'OLET JO HAKENUT TÄTÄ. HYLKÄYS ON MATKALLA.', cx, SC.y + SC.h - 28, '#a03a3a', { align: 'center' });
+        else if (s.t >= TS.DEADLINE && s.t < 30 * 60) TS.text(g, L().closed.slice(0, 40), cx, SC.y + SC.h - 28, '#a03a3a', { align: 'center' });
+        else btn({ x: bx, y: SC.y + SC.h - 31, w: bw, h: 12 }, 'HAE PAIKKAA', () => { slots = [TS.rand(0, 3), TS.rand(0, 3), TS.rand(0, 3)]; view = 'letter'; });
+        btn({ x: bx, y: SC.y + SC.h - 15, w: bw, h: 12 }, 'TAKAISIN', () => { if (fromLink) TS.go(back); else view = 'ads'; });
       } else if (view === 'letter') {
         const ad = TS.T.ads[sel];
         TS.text(g, 'HAKEMUS: ' + ad.title.slice(0, chars - 10), SC.x + 8, top, GREEN);

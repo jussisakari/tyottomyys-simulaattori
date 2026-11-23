@@ -16,7 +16,7 @@ window.TS = window.TS || {};
   // The apps: id, name under the icon, what happens on a tap.
   const APPS = [
     { id: 'phone', name: 'Puhelin', open: () => TS.phoneContacts() },
-    { id: 'wazzup', name: 'WazzupApp', open: () => TS.go('wazzup', { back: 'phonehome' }), badge: () => TS.wazState().unread },
+    { id: 'wazzup', name: 'WazzupApp', open: () => TS.go('wazzup', { back: 'phonehome' }), badge: () => TS.wazUnread() },
     { id: 'hehku', name: 'Hehku', open: () => TS.go('some', { back: 'phonehome' }) },
     { id: 'toivo', name: 'Työkkäri.fi', open: () => TS.go('laptop', { phone: true, back: 'phonehome', view: 'ads' }) },
     { id: 'mail', name: 'Sähköposti', open: () => TS.go('laptop', { phone: true, back: 'phonehome', view: 'mail' }),

@@ -247,7 +247,7 @@ window.TS = window.TS || {};
       TS.text(g, '!', 8, -16.5, '#fff', { align: 'center', bold: true });
     }
     // unread WazzupApp messages from Kari: a green badge
-    const unread = S.waz ? S.waz.unread : 0;
+    const unread = S.waz ? TS.wazUnread() : 0;
     if (unread && !ringing) {
       TS.ell(g, 8, -14, 4.2, 4.2, '#25b860', '#fff', 0.6);
       TS.text(g, unread > 9 ? '9+' : String(unread), 8, -16.6, '#fff', { align: 'center', bold: true, s: 0.75 });

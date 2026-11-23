@@ -16,7 +16,7 @@ window.TS = window.TS || {};
     const m = t % 1440;
     if (id === 'store') return true; // Ass-market is open 24/7
     if (id === 'alko') return m >= 9 * 60 && m < 21 * 60;
-    if (id === 'bar') return m >= 11 * 60 || m < 3 * 60;
+    if (id === 'bar') return m >= 9 * 60 || m < 3 * 60; // Istuva Härkä opens at 9
     return true;
   };
   const NAMES = { store: 'Ass-market', alko: 'Alko', bar: 'Istuva Härkä', park: 'Puisto' };
@@ -28,6 +28,12 @@ window.TS = window.TS || {};
     { id: 'alko', name: 'Alko', r: { x: 146, y: 66, w: 54, h: 88 }, stand: 174 },
     { id: 'bar', name: 'Istuva Härkä', r: { x: 206, y: 72, w: 52, h: 82 }, stand: 232 },
     { id: 'park', name: 'Puisto', r: { x: 262, y: 60, w: 58, h: 94 }, stand: 292 },
+  ];
+  // The morning queue outside Alko: [x, colours, stamping feet]
+  const ALKO_QUEUE = [
+    [154, { w: '#3a5a3a', W: '#2a4a2a', h: '#8a8a8a', j: '#3a3a4a', J: '#2a2a3a', cap: '#6a2a2a' }, false],
+    [171, { w: '#6a5a3a', W: '#4a3e28', h: '#3a2a20', b: '#5a4a3a', j: '#2c3a55', J: '#22304a' }, true],
+    [189, { w: '#4a4a6a', W: '#36364e', h: '#c8c0b8', b: '#b8b0a8', j: '#4a4a3a', J: '#3a3a2a' }, false],
   ];
   TS.streetStand = (id) => (HOT.find((h) => h.id === id) || HOT[0]).stand;
 
@@ -166,6 +172,11 @@ window.TS = window.TS || {};
       const walking = walker.target != null && !ui.busy();
       ui.drawTint(g, 0.6);
       if (dark) { g.globalAlpha = 0.2; R(g, 296, 70, 24, 90, '#fff0a0'); g.globalAlpha = 1; }
+      // Before Alko opens at 9, the regulars wait outside the door, stamping their feet
+      const mm = s.t % 1440;
+      if (mm >= 6 * 60 && mm < 9 * 60) {
+        ALKO_QUEUE.forEach(([qx, look, stamp], i) => TS.drawMan(g, qx, FOOT_Y - (i % 2), 1, stamp, true, look));
+      }
       TS.drawMan(g, walker.x, FOOT_Y, walker.dir, walking, true); // after the tint: solid
       ui.drawHUD(g);
       if (!ui.busy()) {

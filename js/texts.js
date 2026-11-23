@@ -376,29 +376,33 @@ TS.T = {
     app: 'WazzupApp',
     status: 'paikalla',
     typing: 'kirjoittaa...',
-    about: 'Kari, 45 v, 128 kg. Tunnette ammattikoulusta. Hän ei ole vastannut puhelimeen kertaakaan vuoden 2014 jälkeen ja kirjoittaa vain isoilla kirjaimilla. Hän on myös ainoa, joka varmistaa joka aamu, että olet elossa.',
+    about: 'Kari, 45 v. Tunnette ammattikoulusta. Hän ei ole vastannut puhelimeen kertaakaan vuoden 2014 jälkeen ja kirjoittaa vain isoilla kirjaimilla. Hänellä on elämässä yksi tehtävä: herättää sinut. Joka aamu.',
     first: ['HERÄÄ TÖRÄTAMPERO', 'WOMBOAMPINA HERÄTYYYS!'],
+    // Only wake-up messages for Keijo: nothing about Kari himself.
     normal: [
       'HERÄTYYYYYS',
+      'HERÄÄ KEIJO',
       'ONKO SE KEIJO HEREILLÄ VAI EI',
-      'MÄ OLIN JO KAUPASSA JA TAKASIN ENNEN KU SÄ HERÄSIT',
-      'LÄSKI ON VAAN MIELENTILA',
-      'MUN PAINO 128 KG. MUN MIELI 70 KG. KESKIARVO IHAN HYVÄ',
-      'TEKOÄLY TEKEE KOHTA KAIKKIEN TYÖT. PAITSI MEIDÄN. MEILLÄ EI OO TÖITÄ HAHAHAHA',
-      'KAHVI JA KALJA ON SAMA ASIA ERI AIKAAN',
-      'MITÄ SÄ TEET. MÄ EN TEE MITÄÄN. MEILLÄ ON SAMAT HOMMAT',
-      'OOTKO SYÖNY. MÄ OON SYÖNY KOLME KERTAA. ON VASTA AAMUPÄIVÄ',
-      'TOIVOTAN SULLE HYVÄÄ PÄIVÄÄ. NYT. HETI. HYVÄÄ PÄIVÄÄ!!!',
-    ],
-    videoIntro: ['KATO TÄÄ', 'TÄÄ ON NIIN HYVÄ', 'HAHAHAHHAHAHAHA KATO', 'KATO LOPPUUN ASTI!!!!', 'TEKOÄLY TEKI TÄN!!!! IHAN SAIRASTA'],
+      'KEIJO HERÄÄ NYT HETI',
+      'HERÄTYS HERÄTYS HERÄTYS',
+      'AAMU ON JO. HERÄÄ',
+      'HERÄÄ PÖLLÖ',
+      'NOUSE YLÖS KEIJO!!!',
+      'HEREILLÄ? HEREILLÄ?? HEREILLÄ???',
+      'HERÄÄ SIELTÄ SÄNGYSTÄ',
+      'KUKKUU!!! HERÄTYS!!!',
+      'SILMÄT AUKI KEIJO',
+      'HERÄÄ KEIJO HERÄÄ KEIJO HERÄÄ KEIJO',
+      'TÄMÄ ON HERÄTYSVIESTI. HERÄÄ.',
+    ],    videoIntro: ['KATO TÄÄ', 'TÄÄ ON NIIN HYVÄ', 'HAHAHAHHAHAHAHA KATO', 'KATO LOPPUUN ASTI!!!!', 'TEKOÄLY TEKI TÄN!!!! IHAN SAIRASTA'],
     videos: [
       'AI-video: hirvi tekee voltin ja muuttuu farmariautoksi. Taustalla soi humppa.',
       'AI-video: vauva johtaa sinfoniaorkesteria. Vauvalla on kuusi sormea. Kapellimestarin tikkukin on sormi.',
-      'AI-video: lihava ukko surffaa jättimakkaralla järvellä. Ukko näyttää ihan Karilta.',
+      'AI-video: ukko surffaa jättimakkaralla järvellä ja huutaa HERÄTYS. Kari on katsonut sen 40 kertaa.',
       'AI-video: kissa pitää TED-puheen saunomisesta. 2,4 miljoonaa tykkäystä.',
       'AI-video: hamsteri ajaa traktoria ja sanoo "HERÄTYS". Kari on lisännyt äänen itse.',
       'AI-video: pizza syö pizzaa. Kesto 7 sekuntia. Opetus: ei mitään.',
-      'AI-video: kolme mummoa breikkaa kirkossa ja muuttuu kyyhkysiksi. Kari on katsonut sen 40 kertaa.',
+      'AI-video: kolme mummoa breikkaa kirkossa ja muuttuu kyyhkysiksi.',
     ],
     angry: [
       '',
@@ -432,6 +436,64 @@ TS.T = {
     notify: 'WAZZUPAPP: KARI',
     bigPile: 'Puhelin on värissyt koko ajan. WazzupAppissa on {n} lukematonta viestiä Karilta.',
   },
+  // The other WazzupApp chats: ads. msgs = [minute of the day, text] (01:30 = 25*60+30).
+  wazSpam: {
+    // Äiti sends links to job ads (third value = which ad in TS.T.ads the link opens)
+    aiti: {
+      name: 'Äiti', status: 'paikalla (aina)', color: '#c86a9a', initials: 'Ä',
+      msgs: [
+        [8 * 60 + 5, 'Huomenta kulta! Löysin sulle tämän. Ass-marketissa haetaan kassaa. Sinähän olet aina tykännyt käydä kaupassa <3', 6],
+        [12 * 60 + 40, 'Keijo katso! Siivoojaa haetaan. Sinun asunnostasi päätellen tämä olisi sulle uusi kokemus, mutta kokeile!', 5],
+        [16 * 60 + 10, 'Raimon poika sanoi, että pizzakuskeille on aina töitä. Ja saat samalla liikuntaa! Isäkin sanoo niin.', 8],
+        [20 * 60 + 30, 'Vielä yksi! Tämä on ihan sulle. Valittaminen on aina ollut sun vahvuus <3 Hyvää yötä kulta. Hae nyt.', 11],
+      ],
+      ask: 'Mitä vastaat äidille?',
+      replies: [
+        { say: 'Kiitos äiti.', answer: 'Ole hyvä kulta! Hae nyt sitten. Äiti uskoo suhun <3', mood: 3 },
+        { say: 'Haen heti!', answer: 'Voi kun ihana!!! Kerron heti isälle! Ja Raimolle!', mood: 5 },
+        { say: 'Äiti, mä hoidan tän itse.', answer: 'Niinhän sä sanoit vuonna 2023:kin. Ja 2024. Rakastan sua <3', mood: -3 },
+      ],
+    },
+    vippi: {
+      name: 'PikaVippi24', status: 'Yritystili ✓', color: '#e8a020', initials: '€',
+      msgs: [
+        [9 * 60 + 12, 'Hei Keijo! Sinulle on myönnetty ennakkopäätös: jopa 2000 € heti tilille! Ei turhia kysymyksiä. Vastaa LAINA.'],
+        [14 * 60 + 30, 'Muistutus! Rahat odottavat. Todellinen vuosikorko vain 189 %. Elämä on lyhyt, korot pitkiä!'],
+        [22 * 60 + 5, 'Joulu tulee! Lainaa lahjoihin. Lahjat ilahduttavat hetken, lyhennykset vuosia.'],
+      ],
+      ask: 'Mitä vastaat PikaVippi24:lle?',
+      replies: [
+        { say: 'LAINA', loan: true },
+        { say: 'Kuinka paljon korkoa?', answer: 'Korkomme on kilpailukykyinen.* (*Kilpailemme muiden pikavippien kanssa.)' },
+        { say: 'STOP', answer: 'Kiitos viestistäsi! Olet nyt VIP-asiakas. VIP-asiakkaat saavat enemmän tarjouksia.' },
+      ],
+      loanYes: 'Onnittelut Keijo! 100 € on matkalla tilillesi. Takaisinmaksu 135 € 30 päivän kuluessa. Tervetuloa asiakkaaksemme. Ikuisesti.',
+      loanAgain: 'Sinulla on jo laina meillä! Haluatko toisen lainan sen maksamiseen? Vastaa LAINA.',
+      loanThought: 'Tilille tuli 100 €. Se tuntuu rahalta. Se ei ole rahaa. Se on tulevan Keijon velkaa, korkoineen.',
+    },
+    kasino: {
+      name: 'Kasino Kultakala', status: 'Yritystili ✓', color: '#c0303a', initials: '7',
+      msgs: [
+        [11 * 60, 'KEIJO!!! 200 ILMAISKIERROSTA odottaa! Talleta vain 10 € ja voita jopa 1 000 000 €!!!'],
+        [17 * 60 + 45, 'Huomasimme, ettet ole pelannut tänään. Onko kaikki hyvin? Talleta 10 €, niin tarkistetaan.'],
+        [25 * 60 + 30, 'Yöllä voittaa isoimmat! (Tutkimusten mukaan ei.) Pyöräytä nyt!'],
+      ],
+      ask: 'Mitä vastaat Kasino Kultakalalle?',
+      replies: [
+        { say: 'Pyöräytä (5 €)', spin: true },
+        { say: 'Mistä te saitte mun numeron?', answer: 'Kumppaneiltamme! Arvostamme yksityisyyttäsi niin paljon, että jaamme sen.' },
+        { say: 'STOP', answer: 'Olet poistunut listalta. Tervetuloa takaisin listalle!' },
+      ],
+      win: 'VOITTO!!! 40 €! Sinulla on selvästi lahja. Talleta lisää, ettei lahja mene hukkaan!',
+      lose: [
+        'Ei voittoa tällä kertaa! Melkein! Sinulla oli 2/3 kirsikkaa. Kirsikoita on aina 2/3.',
+        'Ei voittoa! Mutta onnittelut: olet askeleen lähempänä voittoa. Tilastollisesti et ole.',
+        'Hups! Kolikko vieri. Talleta lisää, niin se vierii takaisin.',
+      ],
+      broke: 'Tililläsi ei ole katetta. Voisitko ehkä lainata jostain? (PikaVippi24 on yhteistyökumppanimme.)',
+    },
+  },
+  wazList: 'Viimeisimmät keskustelut',
   // Selling stuff on Tori.fi (js/tori.js)
   tori: {
     items: {
@@ -540,7 +602,7 @@ TS.T = {
     drunkLook: 'Myyjä on huomannut sinut jo ovelta. Hän ei hymyile. Hän ei koskaan hymyile, mutta nyt vielä vähemmän.',
     refused: '"Valitettavasti emme voi myydä päihtyneelle asiakkaalle." Yrität näyttää selvältä. Se on vaikeampaa kuin työnhaku. Hylkäys tuli taas nopeammin kuin mistään työpaikasta.',
     refusedAgain: '"Ei. Edelleenkään." Kanta-asiakkaat jonossa katsovat lattiaa. He tietävät, miltä se tuntuu.',
-    early: 'Alko aukeaa klo 9. Odotat oven takana. Et ole ainoa.',
+    early: 'Alko aukeaa klo 9. Oven takana odottaa jo kolme miestä. Kukaan ei puhu. Kaikki tietävät. Asetut jonon jatkoksi.',
   },
   bar: {
     enter: 'Istuva Härkä. Nimi sopii: kanta-asiakkaat istuvat samoilla paikoilla kuin vuonna 2009, eikä kukaan ole noussut. Sinä olet täällä uusi, vain kahdeksan vuotta.',

@@ -45,6 +45,8 @@ window.TS = window.TS || {};
           (s.flags.orders ? 'OSTOS-TV-TILAUKSIA ' + s.flags.orders : ''),
           (s.debt ? 'KLARNA-VELKA ' + TS.euro(s.debt) : ''),
           (s.kelaCut ? 'KELA VEI MOBILEPAYT ' + TS.euro(s.kelaCut) : ''),
+          (s.vippiDebt ? 'PIKAVIPPI ' + TS.euro(s.vippiDebt) : ''),
+          (s.flags.spins ? 'KASINOPYÖRÄYTYKSIÄ ' + s.flags.spins : ''),
           (s.waz && s.waz.sent ? 'KARIN VIESTEJÄ ' + s.waz.sent : '')].filter(Boolean).join('   '),
       ].filter(Boolean);
       sum.forEach((ln, i) => TS.text(g, ln, 160, 134 + i * 7.5, '#8a8494', { align: 'center' }));

@@ -36,7 +36,7 @@
   moves it one disk forward and changes nothing else. "Sulje kansi" → "Kaikki hoituu puhelimella.
   Kaikki paitsi elämä."
 - **Ulkona (street)**: home door, Ass-market (the corner shop, a parody of S-market, yellow brush-stroke sign, open 24/7) with a trash bin in front (dig out
-  bottles, 3 times), Alko (09–21), Istuva Härkä (bar, 11–03), Puisto (always open).
+  bottles, 3 times), Alko (09–21), Istuva Härkä (bar, 09–03); before 09:00 a queue of regulars waits outside Alko, Puisto (always open).
 - **Kauppa**: return bottles (0,15 € each), Kaljaasi III 0,99 €, lonkero 1,98 € (double the
   beer price), makkara, ruisleipä, nuudelit, scratch card.
 - **Alko**: tetra wine, a small bottle of vodka.
@@ -75,12 +75,17 @@ Red badges for unread mail and Kari's messages. Apps open directly and "< ALOITU
   can only write something nice. Each gets a reply and a thought from Keijo.
 
 ## Kari and WazzupApp (`wazzup.js`)
-- Kari, 45, 128 kg, a friend from vocational school. He never answers the phone ("Soita Karille"
+- Kari, 45, a friend from vocational school; his only mission in life is to wake Keijo up. He never answers the phone ("Soita Karille"
   → no answer, then a stupid WazzupApp message, sometimes with a video).
 - From 07:00 he sends all-caps messages ("HERÄÄ TÖRÄTAMPERO", "WOMBOAMPINA HERÄTYYYS!") and AI
   "TikTok" videos (click to watch). Ignoring him makes him angrier step by step
   (HALOOOO → MIKS ET VASTAA??? → HERÄTYYYYYYYS NYT MENEE HERMOT → … → "HYVÄSTI." → "HERÄÄÄÄÄÄ").
   Reading without replying: "SINISET RASTIT EI VALEHTELE!!!!". Replying calms him down.
+- WazzupApp opens to a list of recent chats (newest first, previews, unread badges). **Äiti** sends
+  links to job ads (08:05, 12:40, 16:10, 20:30) with motherly comments; tapping a link opens that ad
+  in Työkkäri.fi so you can apply. Besides Kari and äiti:
+  ads from **PikaVippi24** (answer LAINA → +100 € now, 135 € to pay back) and **Kasino Kultakala**
+  (spin for 5 €, 12 % chance of 40 €). The end screen shows the loan and the spins.
 - The phone icon gets a green badge for unread messages. The desk phone is gone.
 
 ## Tori.fi payments
